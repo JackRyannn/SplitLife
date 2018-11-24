@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
    
+//    取消button
     @IBAction func backBtnClicked(_ sender: Any) {
         let alertController = UIAlertController(title: "系统提示",
                                                 message: "未保存就退出吗？", preferredStyle: .alert)
@@ -25,6 +26,7 @@ class DetailViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
 
     }
+//    保存button
     @IBAction func saveBtnClicked(_ sender: Any) {
         let alertController = UIAlertController(title: "保存成功!",
                                                 message: nil, preferredStyle: .alert)

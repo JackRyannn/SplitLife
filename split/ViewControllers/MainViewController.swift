@@ -54,12 +54,12 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        let manager = SQLiteManager()
+        manager.createTable(tableName: "t_event")
+        manager.insert(tableName: "t_event", dicFields: ["event_id":1,"event_name":"Travel around the world","event_state":0])
     }
 
 

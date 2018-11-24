@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180D6F0021A9319B00D62A6D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */; };
+		180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D6F0521A9356100D62A6D /* SqliteManager.swift */; };
+		D9BA66986304CCD8C90A8400 /* Pods_split.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0875012D365B4EC19946D13 /* Pods_split.framework */; };
 		E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8362219C7858004F3B34 /* AppDelegate.swift */; };
 		E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8364219C7858004F3B34 /* MainViewController.swift */; };
 		E14D8368219C7858004F3B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14D8366219C7858004F3B34 /* Main.storyboard */; };
@@ -42,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		180D6F0121A931EB00D62A6D /* FMDB */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FMDB; path = Pods/FMDB; sourceTree = "<group>"; };
+		180D6F0321A9321A00D62A6D /* fmdb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fmdb; path = Pods/FMDB/src/fmdb; sourceTree = "<group>"; };
+		180D6F0521A9356100D62A6D /* SqliteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
+		5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.debug.xcconfig"; sourceTree = "<group>"; };
+		BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.release.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.release.xcconfig"; sourceTree = "<group>"; };
+		E0875012D365B4EC19946D13 /* Pods_split.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_split.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14D835F219C7858004F3B34 /* split.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = split.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14D8362219C7858004F3B34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E14D8364219C7858004F3B34 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180D6F0021A9319B00D62A6D /* libsqlite3.tbd in Frameworks */,
+				D9BA66986304CCD8C90A8400 /* Pods_split.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82C06E5E9EBC505ED02DB14F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */,
+				BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E14D8356219C7858004F3B34 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +117,8 @@
 				E14D8376219C785B004F3B34 /* splitTests */,
 				E14D8381219C785B004F3B34 /* splitUITests */,
 				E14D8360219C7858004F3B34 /* Products */,
+				82C06E5E9EBC505ED02DB14F /* Pods */,
+				ED6B5E33C2331A831E00E0A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +142,7 @@
 				E14D8369219C785B004F3B34 /* Assets.xcassets */,
 				E14D836B219C785B004F3B34 /* LaunchScreen.storyboard */,
 				E14D836E219C785B004F3B34 /* Info.plist */,
+				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
 			);
 			path = split;
 			sourceTree = "<group>";
@@ -163,6 +187,17 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		ED6B5E33C2331A831E00E0A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				180D6F0321A9321A00D62A6D /* fmdb */,
+				180D6F0121A931EB00D62A6D /* FMDB */,
+				180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */,
+				E0875012D365B4EC19946D13 /* Pods_split.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E14D8387219C785B004F3B34 /* Build configuration list for PBXNativeTarget "split" */;
 			buildPhases = (
+				1C6E18AEBD5D2478336C1B33 /* [CP] Check Pods Manifest.lock */,
 				E14D835B219C7858004F3B34 /* Sources */,
 				E14D835C219C7858004F3B34 /* Frameworks */,
 				E14D835D219C7858004F3B34 /* Resources */,
+				427D07C99F2773EE8B99B0C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,6 +328,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C6E18AEBD5D2478336C1B33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-split-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		427D07C99F2773EE8B99B0C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-split/Pods-split-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-split/Pods-split-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E14D835B219C7858004F3B34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -302,6 +386,7 @@
 				E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */,
 				E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */,
 				E168BD0B21A0ECC600D8EDB2 /* MyViewController.swift in Sources */,
+				180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */,
 				E168BD09219F178800D8EDB2 /* SubViewController.swift in Sources */,
 				E16BDBE821A624E700448D16 /* DetailViewController.swift in Sources */,
 			);
@@ -476,6 +561,7 @@
 		};
 		E14D8388219C785B004F3B34 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -493,6 +579,7 @@
 		};
 		E14D8389219C785B004F3B34 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
