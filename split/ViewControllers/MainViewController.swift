@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class MainViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     @IBOutlet weak var lifeTableView: UITableView!
     @IBAction func AddEvent(_ sender: Any) {

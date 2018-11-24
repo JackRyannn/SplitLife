@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubViewController: UIViewController,UITableViewDataSource {
+class SubViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBAction func backBtnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -23,6 +23,7 @@ class SubViewController: UIViewController,UITableViewDataSource {
     }
     
 
+    
     /*
     // MARK: - Navigation
 
@@ -51,6 +52,12 @@ class SubViewController: UIViewController,UITableViewDataSource {
         let label = mainCell?.viewWithTag(1) as? UILabel
         label?.text = "split"
         return mainCell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard.init(name: "Main", bundle: nil)
+        let detailVC = sb.instantiateViewController(withIdentifier: "detailViewController")
+        
+        self.present(detailVC, animated: true, completion: nil)
     }
     
    
