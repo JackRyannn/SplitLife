@@ -15,7 +15,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         array.append("环游世界")
         lifeTableView.reloadData()
     }
-    var array = ["找到一份喜爱的工作","找到女朋友","养猫"]
+    var array = Array<String>()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count;
@@ -36,8 +36,9 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         print("VC:click")
 //        let subVC = SubViewController()
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let subVC = sb.instantiateViewController(withIdentifier: "subViewController")
-
+        let subVC = sb.instantiateViewController(withIdentifier: "subViewController") as! SubViewController
+        subVC.event_id = indexPath.row
+        subVC.event_name = array[indexPath.row]
         self.present(subVC, animated: true, completion: nil)
         print("VC:Done")
     }
@@ -58,8 +59,15 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let manager = SQLiteManager()
-        manager.createTable(tableName: "t_event")
-        manager.insert(tableName: "t_event", dicFields: ["event_id":1,"event_name":"Travel around the world","event_state":0])
+        manager.createTableEvent(tableName: "t_event")
+        manager.createTableElement(tableName: "t_element")
+        manager.createTableRelationship(tableName: "t_relationship")
+        
+//        manager.insert(tableName: "t_event", dicFields: ["event_id":2,"event_name":"Travel around the world","event_state":0])
+        let rs = manager.select(tableName: "t_event", arFieldsKey: ["E_id","E_name"])
+        for s in rs{
+            array.append(s.object(forKey: "E_name")! as! String)
+        }
     }
 
 

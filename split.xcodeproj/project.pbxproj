@@ -48,7 +48,7 @@
 		180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		180D6F0121A931EB00D62A6D /* FMDB */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FMDB; path = Pods/FMDB; sourceTree = "<group>"; };
 		180D6F0321A9321A00D62A6D /* fmdb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fmdb; path = Pods/FMDB/src/fmdb; sourceTree = "<group>"; };
-		180D6F0521A9356100D62A6D /* SqliteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
+		180D6F0521A9356100D62A6D /* SqliteManager.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
 		5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.release.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.release.xcconfig"; sourceTree = "<group>"; };
 		E0875012D365B4EC19946D13 /* Pods_split.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_split.framework; sourceTree = BUILT_PRODUCTS_DIR; };

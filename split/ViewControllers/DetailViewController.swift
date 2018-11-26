@@ -28,6 +28,8 @@ class DetailViewController: UIViewController {
     }
 //    保存button
     @IBAction func saveBtnClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+
         let alertController = UIAlertController(title: "保存成功!",
                                                 message: nil, preferredStyle: .alert)
         //显示提示框
@@ -36,7 +38,6 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
             self.presentedViewController?.dismiss(animated: false, completion: nil)
         }
-        self.dismiss(animated: true, completion: nil)
 
     }
     override func viewDidLoad() {
