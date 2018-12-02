@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180BC3CA21B1AE1A0061D33A /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BC3C921B1AE1A0061D33A /* AddEventViewController.swift */; };
 		180D6F0021A9319B00D62A6D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */; };
 		180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D6F0521A9356100D62A6D /* SqliteManager.swift */; };
+		1890BCE121B2EFEF008E8236 /* AddElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */; };
+		1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */; };
 		D9BA66986304CCD8C90A8400 /* Pods_split.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0875012D365B4EC19946D13 /* Pods_split.framework */; };
 		E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8362219C7858004F3B34 /* AppDelegate.swift */; };
 		E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8364219C7858004F3B34 /* MainViewController.swift */; };
@@ -45,10 +48,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180BC3C921B1AE1A0061D33A /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		180D6EFF21A9319B00D62A6D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		180D6F0121A931EB00D62A6D /* FMDB */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FMDB; path = Pods/FMDB; sourceTree = "<group>"; };
 		180D6F0321A9321A00D62A6D /* fmdb */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fmdb; path = Pods/FMDB/src/fmdb; sourceTree = "<group>"; };
 		180D6F0521A9356100D62A6D /* SqliteManager.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
+		1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddElementViewController.swift; sourceTree = "<group>"; };
+		1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAchievementViewController.swift; sourceTree = "<group>"; };
 		5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.release.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.release.xcconfig"; sourceTree = "<group>"; };
 		E0875012D365B4EC19946D13 /* Pods_split.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_split.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +189,9 @@
 				E16BDBE321A1BCA000448D16 /* AnalysisViewController.swift */,
 				E16BDBE521A1BCA900448D16 /* WorldViewController.swift */,
 				E16BDBE721A624E700448D16 /* DetailViewController.swift */,
+				180BC3C921B1AE1A0061D33A /* AddEventViewController.swift */,
+				1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */,
+				1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -380,7 +389,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180BC3CA21B1AE1A0061D33A /* AddEventViewController.swift in Sources */,
 				E16BDBE621A1BCA900448D16 /* WorldViewController.swift in Sources */,
+				1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */,
 				E16BDBE221A1BC7800448D16 /* TodoViewController.swift in Sources */,
 				E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */,
 				E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */,
@@ -389,6 +400,7 @@
 				180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */,
 				E168BD09219F178800D8EDB2 /* SubViewController.swift in Sources */,
 				E16BDBE821A624E700448D16 /* DetailViewController.swift in Sources */,
+				1890BCE121B2EFEF008E8236 /* AddElementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

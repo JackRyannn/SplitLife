@@ -9,14 +9,16 @@
 import UIKit
 
 class TodoViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    var todoArray = Array<String>()
+    let sqlManager = SQLiteManager()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return todoArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         let label = cell?.viewWithTag(1) as? UILabel
-        label?.text = "小成分"
+        label?.text = todoArray[indexPath.row]
         return cell!
     }
     
@@ -30,6 +32,19 @@ class TodoViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        queryAndUpdate()
+    }
+    
+    func queryAndUpdate() {
+        var rs = sqlManager.select(tableName: "t_element", arFieldsKey: ["e_id","e_name","e_state","e_difficulty"])
+        print("====")
+//  NSTaggedPointerString这种格式需要转换成NSString，然后取intValue
+        rs.sort(by: {(obj1, obj2) -> Bool in return ((obj1.object(forKey: "e_difficulty") as! NSString).intValue) < (obj2.object(forKey: "e_difficulty")as! NSString).intValue })
+        for s in rs{
+            todoArray.append(s.object(forKey: "e_name")! as! String)
+        }
+    }
 
     /*
     // MARK: - Navigation
