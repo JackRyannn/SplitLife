@@ -13,7 +13,8 @@ class AddAchievementViewController: UIViewController {
     var sqlManager = SQLiteManager();
     var event_id:Int = 0
     var event_name:String = ""
-    
+    var achievement_id = "0"
+
     @IBOutlet weak var nameText: UITextField!
     
     //    取消button
@@ -55,7 +56,8 @@ class AddAchievementViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("===========AddAchievement===========")
+        print(achievement_id)
         // Do any additional setup after loading the view.
     }
     

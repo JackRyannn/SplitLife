@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     var flag = 0;
     var event_id:Int = 0
     var event_name:String = ""
+    var element_id:String = ""
     @IBOutlet weak var nameText: UITextField!
 
 //    取消button

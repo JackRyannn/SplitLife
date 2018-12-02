@@ -13,8 +13,9 @@ class AddElementViewController: UIViewController {
     var sqlManager = SQLiteManager();
     var event_id:Int = 0
     var event_name:String = ""
-    
+    var element_id = "0"
     @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     //    取消button
     @IBAction func backBtnClicked(_ sender: Any) {
@@ -57,7 +58,11 @@ class AddElementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("===========AddElement===========")
+        print(element_id)
+        let rs = sqlManager.select(tableName: "t_element", arFieldsKey: ["e_name","e_content","e_state","e_type","e_create_time","e_plan_time","e_estimated_time","e_finish_time","e_key","e_value","e_operator","e_difficulty","e_enable"],conditon:"e_id='"+element_id+"'")
+        let navigationItem = navigationBar.topItem
+        navigationItem?.title = rs[0].object(forKey: "e_name") as? String
         // Do any additional setup after loading the view.
     }
     

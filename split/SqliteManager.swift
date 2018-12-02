@@ -77,36 +77,71 @@ class SQLiteManager: NSObject {
       }
       db.close()
    }
-    //MARK: - 查询数据
-    /// 查询数据
-    ///
-    /// - Parameters:
-    ///   - tableName: 表名称
-    ///   - arFieldsKey: 要查询获取的表字段
-    /// - Returns: 返回相应数据
-    func select(tableName:String,arFieldsKey:NSArray)->([NSMutableDictionary]){
-        let db = dataBase()
-        var arFieldsValue = [NSMutableDictionary]()
-        let sql = "SELECT * FROM " + tableName
-        if db.open() {
-            do{
-                let rs = try db.executeQuery(sql, values: nil)
-                while rs.next() {
-                  let dicFieldsValue :NSMutableDictionary = [:]
-                  for i in 0..<arFieldsKey.count {
-                        dicFieldsValue.setObject(rs.string(forColumn: arFieldsKey[i] as! String)!, forKey: arFieldsKey[i] as! NSCopying)
-                    }
-                    arFieldsValue.append(dicFieldsValue)
-                }
-            }catch{
-                print(db.lastErrorMessage())
+   //MARK: - 查询数据
+   /// 查询数据
+   ///
+   /// - Parameters:
+   ///   - tableName: 表名称
+   ///   - arFieldsKey: 要查询获取的表字段
+   /// - Returns: 返回相应数据
+   func select(tableName:String,arFieldsKey:NSArray)->([NSMutableDictionary]){
+      let db = dataBase()
+      var arFieldsValue = [NSMutableDictionary]()
+      let sql = "SELECT * FROM " + tableName
+      if db.open() {
+         do{
+            let rs = try db.executeQuery(sql, values: nil)
+            while rs.next() {
+               let dicFieldsValue :NSMutableDictionary = [:]
+               for i in 0..<arFieldsKey.count {
+                  dicFieldsValue.setObject(rs.string(forColumn: arFieldsKey[i] as! String)!, forKey: arFieldsKey[i] as! NSCopying)
+               }
+               arFieldsValue.append(dicFieldsValue)
             }
-            
-        }
+         }catch{
+            print(db.lastErrorMessage())
+         }
+         
+      }
       print("查询数据结果：")
       print(arFieldsValue)
-        return arFieldsValue
-    }
+      return arFieldsValue
+   }
+   
+   //MARK: - 通过属性查询数据
+   /// 查询数据
+   ///
+   /// - Parameters:
+   ///   - tableName: 表名称
+   ///   - arFieldsKey: 要查询获取的表字段
+   /// - Returns: 返回相应数据
+   func select(tableName:String,arFieldsKey:NSArray,conditon:String)->([NSMutableDictionary]){
+      let db = dataBase()
+      var arFieldsValue = [NSMutableDictionary]()
+      let sql = "SELECT * FROM " + tableName + " WHERE " + conditon
+      if db.open() {
+         do{
+            let rs = try db.executeQuery(sql, values: nil)
+            while rs.next() {
+               let dicFieldsValue :NSMutableDictionary = [:]
+               for i in 0..<arFieldsKey.count {
+                  let temp = rs.string(forColumn: arFieldsKey[i] as! String)
+//                  数据库取出的字段可能为空，所以这里为空就不添加到数组返回了，后面的？？是提供一个默认值
+                  if (!(temp?.isEmpty ?? true)){
+                     dicFieldsValue.setObject(rs.string(forColumn: arFieldsKey[i] as! String)!, forKey: arFieldsKey[i] as! NSCopying)
+                  }
+               }
+               arFieldsValue.append(dicFieldsValue)
+            }
+         }catch{
+            print(db.lastErrorMessage())
+         }
+         
+      }
+      print("查询数据结果：")
+      print(arFieldsValue)
+      return arFieldsValue
+   }
     
 //    插入表
     func insert(tableName:String,dicFields:NSDictionary){

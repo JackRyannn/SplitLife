@@ -574,6 +574,8 @@
                     </view>
                     <connections>
                         <outlet property="nameText" destination="x2g-xj-WwZ" id="jRr-Sa-FZx"/>
+                        <outlet property="navigationBar" destination="H3Y-Sw-gzT" id="N8U-wM-bQb"/>
+                        <outlet property="navigationItem" destination="jyH-ly-kcP" id="EBL-Ad-iGy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F41-6T-Wkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
