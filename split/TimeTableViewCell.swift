@@ -13,11 +13,11 @@ class TimeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var bgImageView: UIImageView!
+//    @IBOutlet weak var bgImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        bgImageView.image = UIImage.init(named: "time_cell.jpeg")
+//        bgImageView.image = UIImage.init(named: "time_cell.jpeg")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
