@@ -43,15 +43,6 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
 
-    @IBOutlet var myText: [UILabel]!
-    @IBOutlet var hh: [UITextField]!
-    @IBOutlet weak var myBtn: UIButton!
-    @IBAction func btn_touchdown(_ sender: Any) {
-        
-    }
-    @IBAction func btn_click(_ sender: AnyObject){
-
-    }
     
     func queryAndUpdate(){
         lifeArray = Array<String>()

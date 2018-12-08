@@ -17,6 +17,10 @@
 		18CCAD4321B825CF00B8DDF1 /* time_cell.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18CCAD4221B825CF00B8DDF1 /* time_cell.jpeg */; };
 		18CCAD4521B827C000B8DDF1 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CCAD4421B827C000B8DDF1 /* TimeLineViewController.swift */; };
 		D9BA66986304CCD8C90A8400 /* Pods_split.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0875012D365B4EC19946D13 /* Pods_split.framework */; };
+		E10BA2ED21BB704B0010DA0B /* ValuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA2EC21BB704B0010DA0B /* ValuesTableViewController.swift */; };
+		E10BA2EF21BBAB120010DA0B /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA2EE21BBAB120010DA0B /* TextViewController.swift */; };
+		E10BA2F121BBAB1A0010DA0B /* LongTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */; };
+		E10BA2F321BBAB510010DA0B /* Sub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10BA2F221BBAB510010DA0B /* Sub.storyboard */; };
 		E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8362219C7858004F3B34 /* AppDelegate.swift */; };
 		E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8364219C7858004F3B34 /* MainViewController.swift */; };
 		E14D8368219C7858004F3B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14D8366219C7858004F3B34 /* Main.storyboard */; };
@@ -66,6 +70,10 @@
 		5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.release.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.release.xcconfig"; sourceTree = "<group>"; };
 		E0875012D365B4EC19946D13 /* Pods_split.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_split.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E10BA2EC21BB704B0010DA0B /* ValuesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesTableViewController.swift; sourceTree = "<group>"; };
+		E10BA2EE21BBAB120010DA0B /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTextViewController.swift; sourceTree = "<group>"; };
+		E10BA2F221BBAB510010DA0B /* Sub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sub.storyboard; sourceTree = "<group>"; };
 		E14D835F219C7858004F3B34 /* split.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = split.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14D8362219C7858004F3B34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E14D8364219C7858004F3B34 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
 				18CCAD3E21B8258B00B8DDF1 /* TimeTableViewCell.swift */,
 				18CCAD3F21B8258B00B8DDF1 /* TimeTableViewCell.xib */,
+				E10BA2F221BBAB510010DA0B /* Sub.storyboard */,
 			);
 			path = split;
 			sourceTree = "<group>";
@@ -204,6 +213,9 @@
 				1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */,
 				1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */,
 				18CCAD4421B827C000B8DDF1 /* TimeLineViewController.swift */,
+				E10BA2EC21BB704B0010DA0B /* ValuesTableViewController.swift */,
+				E10BA2EE21BBAB120010DA0B /* TextViewController.swift */,
+				E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 				E14D836A219C785B004F3B34 /* Assets.xcassets in Resources */,
 				E14D8368219C7858004F3B34 /* Main.storyboard in Resources */,
 				18CCAD4321B825CF00B8DDF1 /* time_cell.jpeg in Resources */,
+				E10BA2F321BBAB510010DA0B /* Sub.storyboard in Resources */,
 				18CCAD4121B8258B00B8DDF1 /* TimeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,10 +418,13 @@
 			files = (
 				180BC3CA21B1AE1A0061D33A /* AddEventViewController.swift in Sources */,
 				E16BDBE621A1BCA900448D16 /* WorldViewController.swift in Sources */,
+				E10BA2F121BBAB1A0010DA0B /* LongTextViewController.swift in Sources */,
 				1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */,
+				E10BA2ED21BB704B0010DA0B /* ValuesTableViewController.swift in Sources */,
 				E16BDBE221A1BC7800448D16 /* TodoViewController.swift in Sources */,
 				18CCAD4021B8258B00B8DDF1 /* TimeTableViewCell.swift in Sources */,
 				E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */,
+				E10BA2EF21BBAB120010DA0B /* TextViewController.swift in Sources */,
 				E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */,
 				E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */,
 				E168BD0B21A0ECC600D8EDB2 /* MyViewController.swift in Sources */,
