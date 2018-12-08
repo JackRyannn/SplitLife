@@ -9,7 +9,7 @@
 import UIKit
 
 class AddElementViewController: UIViewController {
-
+    
     var sqlManager = SQLiteManager();
     var event_id:Int = 0
     var event_name:String = ""
@@ -61,20 +61,22 @@ class AddElementViewController: UIViewController {
         print("===========AddElement===========")
         print(element_id)
         let rs = sqlManager.select(tableName: "t_element", arFieldsKey: ["e_name","e_content","e_state","e_type","e_create_time","e_plan_time","e_estimated_time","e_finish_time","e_key","e_value","e_operator","e_difficulty","e_enable"],conditon:"e_id='"+element_id+"'")
-        let navigationItem = navigationBar.topItem
-        navigationItem?.title = rs[0].object(forKey: "e_name") as? String
+        if rs.count > 0{
+            let navigationItem = navigationBar.topItem
+            navigationItem?.title = rs[0].object(forKey: "e_name") as? String
+        }
         // Do any additional setup after loading the view.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
