@@ -22,7 +22,7 @@ class SQLiteManager: NSObject {
    func createTableEvent(tableName: String) {
       let db = dataBase()
       if db.open() {
-         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('E_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'E_name' TEXT,'E_content' TEXT,'E_state' INTEGER DEFAULT 0, 'E_type' INTEGER DEFAULT 0,'E_create_time' DATETIME,'E_plan_time' DATETIME,'E_estimated_time' DATETIME,'E_finish_time' DATETIME,'E_enable' INTEGER DEFAULT 0);"
+         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('E_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'E_name' TEXT,'E_content' TEXT,'E_role_id' INTEGER NOT NULL,'E_state' INTEGER DEFAULT 0, 'E_type' INTEGER DEFAULT 0,'E_create_time' DATETIME,'E_plan_time' DATETIME,'E_estimated_time' DATETIME,'E_finish_time' DATETIME,'E_enable' INTEGER DEFAULT 0);"
          if !db.executeStatements(sql_stmt) {
             print("Error: \(db.lastErrorMessage())")
          }
@@ -37,7 +37,7 @@ class SQLiteManager: NSObject {
    func createTableElement(tableName: String) {
       let db = dataBase()
       if db.open() {
-         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('e_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'e_name' TEXT,'e_content' TEXT,'e_state' INTEGER DEFAULT 0, 'e_type' INTEGER DEFAULT 0,'e_create_time' DATETIME,'e_plan_time' DATETIME,'e_estimated_time' DATETIME,'e_finish_time' DATETIME,'e_key' TEXT,'e_value' TEXT,'e_operator' INTEGER,'e_difficulty' INTEGER DEFAULT 0,'e_enable' INTEGER DEFAULT 0);"
+         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('e_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'e_name' TEXT,'e_content' TEXT,'e_role_id' INTEGER NOT NULL,'e_state' INTEGER DEFAULT 0, 'e_type' INTEGER DEFAULT 0,'e_create_time' DATETIME,'e_plan_time' DATETIME,'e_estimated_time' DATETIME,'e_finish_time' DATETIME,'e_key' TEXT,'e_value' TEXT,'e_operator' INTEGER,'e_difficulty' INTEGER DEFAULT 0,'e_enable' INTEGER DEFAULT 0);"
          if !db.executeStatements(sql_stmt) {
             print("Error: \(db.lastErrorMessage())")
          }
@@ -52,7 +52,7 @@ class SQLiteManager: NSObject {
    func createTableAchievement(tableName: String) {
       let db = dataBase()
       if db.open() {
-         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('a_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'a_name' TEXT,'a_content' TEXT,'a_state' INTEGER DEFAULT 0, 'a_type' INTEGER DEFAULT 0,'a_create_time' DATETIME,'a_plan_time' DATETIME,'a_estimated_time' DATETIME,'a_finish_time' DATETIME,'a_key' TEXT,'e_value' TEXT,'a_operator' INTEGER,'a_enable' INTEGER DEFAULT 0);"
+         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('a_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'a_name' TEXT,'a_content' TEXT,'a_role_id' INTEGER NOT NULL,'a_state' INTEGER DEFAULT 0, 'a_type' INTEGER DEFAULT 0,'a_create_time' DATETIME,'a_plan_time' DATETIME,'a_estimated_time' DATETIME,'a_finish_time' DATETIME,'a_key' TEXT,'e_value' TEXT,'a_operator' INTEGER,'a_enable' INTEGER DEFAULT 0);"
          if !db.executeStatements(sql_stmt) {
             print("Error: \(db.lastErrorMessage())")
          }
@@ -67,7 +67,7 @@ class SQLiteManager: NSObject {
    func createTableRelationship(tableName: String) {
       let db = dataBase()
       if db.open() {
-         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('r_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'r_pre_id' INTEGER,'r_next_id' INTEGER,'r_next_name' TEXT,'r_state' INTEGER DEFAULT 0, 'r_type' INTEGER DEFAULT 0,'r_enable' INTEGER DEFAULT 0);"
+         let sql_stmt = "CREATE TABLE IF NOT EXISTS " + tableName + " ('r_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,'r_pre_id' INTEGER,'r_next_id' INTEGER,'r_next_name' TEXT,'r_role_id' INTEGER NOT NULL,'r_state' INTEGER DEFAULT 0, 'r_type' INTEGER DEFAULT 0,'r_enable' INTEGER DEFAULT 0);"
          if !db.executeStatements(sql_stmt) {
             print("Error: \(db.lastErrorMessage())")
          }

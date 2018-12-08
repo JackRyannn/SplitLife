@@ -12,6 +12,10 @@
 		180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D6F0521A9356100D62A6D /* SqliteManager.swift */; };
 		1890BCE121B2EFEF008E8236 /* AddElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */; };
 		1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */; };
+		18CCAD4021B8258B00B8DDF1 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CCAD3E21B8258B00B8DDF1 /* TimeTableViewCell.swift */; };
+		18CCAD4121B8258B00B8DDF1 /* TimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CCAD3F21B8258B00B8DDF1 /* TimeTableViewCell.xib */; };
+		18CCAD4321B825CF00B8DDF1 /* time_cell.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18CCAD4221B825CF00B8DDF1 /* time_cell.jpeg */; };
+		18CCAD4521B827C000B8DDF1 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CCAD4421B827C000B8DDF1 /* TimeLineViewController.swift */; };
 		D9BA66986304CCD8C90A8400 /* Pods_split.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0875012D365B4EC19946D13 /* Pods_split.framework */; };
 		E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8362219C7858004F3B34 /* AppDelegate.swift */; };
 		E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8364219C7858004F3B34 /* MainViewController.swift */; };
@@ -55,6 +59,10 @@
 		180D6F0521A9356100D62A6D /* SqliteManager.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = SqliteManager.swift; sourceTree = "<group>"; };
 		1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddElementViewController.swift; sourceTree = "<group>"; };
 		1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAchievementViewController.swift; sourceTree = "<group>"; };
+		18CCAD3E21B8258B00B8DDF1 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
+		18CCAD3F21B8258B00B8DDF1 /* TimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableViewCell.xib; sourceTree = "<group>"; };
+		18CCAD4221B825CF00B8DDF1 /* time_cell.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = time_cell.jpeg; sourceTree = "<group>"; };
+		18CCAD4421B827C000B8DDF1 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split.release.xcconfig"; path = "Pods/Target Support Files/Pods-split/Pods-split.release.xcconfig"; sourceTree = "<group>"; };
 		E0875012D365B4EC19946D13 /* Pods_split.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_split.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,9 +154,12 @@
 				E14D8362219C7858004F3B34 /* AppDelegate.swift */,
 				E14D8366219C7858004F3B34 /* Main.storyboard */,
 				E14D8369219C785B004F3B34 /* Assets.xcassets */,
+				18CCAD4221B825CF00B8DDF1 /* time_cell.jpeg */,
 				E14D836B219C785B004F3B34 /* LaunchScreen.storyboard */,
 				E14D836E219C785B004F3B34 /* Info.plist */,
 				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
+				18CCAD3E21B8258B00B8DDF1 /* TimeTableViewCell.swift */,
+				18CCAD3F21B8258B00B8DDF1 /* TimeTableViewCell.xib */,
 			);
 			path = split;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 				180BC3C921B1AE1A0061D33A /* AddEventViewController.swift */,
 				1890BCE021B2EFEF008E8236 /* AddElementViewController.swift */,
 				1890BCE221B2EFFB008E8236 /* AddAchievementViewController.swift */,
+				18CCAD4421B827C000B8DDF1 /* TimeLineViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -317,6 +329,8 @@
 				E14D836D219C785B004F3B34 /* LaunchScreen.storyboard in Resources */,
 				E14D836A219C785B004F3B34 /* Assets.xcassets in Resources */,
 				E14D8368219C7858004F3B34 /* Main.storyboard in Resources */,
+				18CCAD4321B825CF00B8DDF1 /* time_cell.jpeg in Resources */,
+				18CCAD4121B8258B00B8DDF1 /* TimeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,10 +407,12 @@
 				E16BDBE621A1BCA900448D16 /* WorldViewController.swift in Sources */,
 				1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */,
 				E16BDBE221A1BC7800448D16 /* TodoViewController.swift in Sources */,
+				18CCAD4021B8258B00B8DDF1 /* TimeTableViewCell.swift in Sources */,
 				E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */,
 				E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */,
 				E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */,
 				E168BD0B21A0ECC600D8EDB2 /* MyViewController.swift in Sources */,
+				18CCAD4521B827C000B8DDF1 /* TimeLineViewController.swift in Sources */,
 				180D6F0621A9356100D62A6D /* SqliteManager.swift in Sources */,
 				E168BD09219F178800D8EDB2 /* SubViewController.swift in Sources */,
 				E16BDBE821A624E700448D16 /* DetailViewController.swift in Sources */,
