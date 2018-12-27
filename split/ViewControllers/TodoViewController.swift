@@ -40,7 +40,7 @@ class TodoViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var rs = sqlManager.select(tableName: "t_element", arFieldsKey: ["e_id","e_name","e_state","e_difficulty"])
         print("====")
 //  NSTaggedPointerString这种格式需要转换成NSString，然后取intValue
-        rs.sort(by: {(obj1, obj2) -> Bool in return ((obj1.object(forKey: "e_difficulty") as! NSString).intValue) < (obj2.object(forKey: "e_difficulty")as! NSString).intValue })
+        rs.sort(by: {(obj1, obj2) -> Bool in return ((obj1.object(forKey: "e_priority") as! NSString).intValue) < (obj2.object(forKey: "e_difficulty")as! NSString).intValue })
         for s in rs{
             todoArray.append(s.object(forKey: "e_name")! as! String)
         }

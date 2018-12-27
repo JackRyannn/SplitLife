@@ -31,14 +31,13 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("VC:click")
 //        let subVC = SubViewController()
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let subVC = sb.instantiateViewController(withIdentifier: "subViewController") as! SubViewController
-        subVC.event_id = indexPath.row
+        subVC.event_id = String(indexPath.row)
+        subVC.cur_id = String(indexPath.row)
         subVC.event_name = lifeArray[indexPath.row]
         self.present(subVC, animated: true, completion: nil)
-        print("VC:Done")
     }
     
     

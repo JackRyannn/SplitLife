@@ -10,6 +10,7 @@ import UIKit
 
 class TextViewController: UIViewController {
     var parentView : AddEventViewController? = nil
+    var parentView2 : DetailViewController? = nil
     var cur_title = ""
     var cur_text = ""
     @IBOutlet weak var textField: UITextField!
@@ -19,6 +20,8 @@ class TextViewController: UIViewController {
     @IBAction func saveBtnClicked(_ sender: Any) {
         parentView?.kv_items[cur_title] = textField.text
         parentView?.addEventTableView.reloadData()
+        parentView2?.kv_items[cur_title] = textField.text
+        parentView2?.detailTableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {

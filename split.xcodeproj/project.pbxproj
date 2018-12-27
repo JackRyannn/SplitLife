@@ -21,6 +21,7 @@
 		E10BA2EF21BBAB120010DA0B /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA2EE21BBAB120010DA0B /* TextViewController.swift */; };
 		E10BA2F121BBAB1A0010DA0B /* LongTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */; };
 		E10BA2F321BBAB510010DA0B /* Sub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10BA2F221BBAB510010DA0B /* Sub.storyboard */; };
+		E12CD38B21C5DBDC0030E530 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12CD38A21C5DBDC0030E530 /* HttpUtil.swift */; };
 		E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8362219C7858004F3B34 /* AppDelegate.swift */; };
 		E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D8364219C7858004F3B34 /* MainViewController.swift */; };
 		E14D8368219C7858004F3B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14D8366219C7858004F3B34 /* Main.storyboard */; };
@@ -74,6 +75,7 @@
 		E10BA2EE21BBAB120010DA0B /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTextViewController.swift; sourceTree = "<group>"; };
 		E10BA2F221BBAB510010DA0B /* Sub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sub.storyboard; sourceTree = "<group>"; };
+		E12CD38A21C5DBDC0030E530 /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		E14D835F219C7858004F3B34 /* split.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = split.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14D8362219C7858004F3B34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E14D8364219C7858004F3B34 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E12CD38921C5DBB40030E530 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
+				E12CD38A21C5DBDC0030E530 /* HttpUtil.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		E14D8356219C7858004F3B34 = {
 			isa = PBXGroup;
 			children = (
@@ -157,15 +168,15 @@
 		E14D8361219C7858004F3B34 /* split */ = {
 			isa = PBXGroup;
 			children = (
+				E12CD38921C5DBB40030E530 /* utils */,
 				E16BDBE021A1BC3C00448D16 /* ViewControllers */,
 				E168BD0E21A0F31500D8EDB2 /* plists */,
-				E14D8362219C7858004F3B34 /* AppDelegate.swift */,
 				E14D8366219C7858004F3B34 /* Main.storyboard */,
+				E14D8362219C7858004F3B34 /* AppDelegate.swift */,
 				E14D8369219C785B004F3B34 /* Assets.xcassets */,
 				18CCAD4221B825CF00B8DDF1 /* time_cell.jpeg */,
 				E14D836B219C785B004F3B34 /* LaunchScreen.storyboard */,
 				E14D836E219C785B004F3B34 /* Info.plist */,
-				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
 				18CCAD3E21B8258B00B8DDF1 /* TimeTableViewCell.swift */,
 				18CCAD3F21B8258B00B8DDF1 /* TimeTableViewCell.xib */,
 				E10BA2F221BBAB510010DA0B /* Sub.storyboard */,
@@ -396,12 +407,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-split/Pods-split-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +437,7 @@
 				E16BDBE221A1BC7800448D16 /* TodoViewController.swift in Sources */,
 				18CCAD4021B8258B00B8DDF1 /* TimeTableViewCell.swift in Sources */,
 				E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */,
+				E12CD38B21C5DBDC0030E530 /* HttpUtil.swift in Sources */,
 				E10BA2EF21BBAB120010DA0B /* TextViewController.swift in Sources */,
 				E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */,
 				E14D8363219C7858004F3B34 /* AppDelegate.swift in Sources */,
@@ -608,7 +622,9 @@
 			baseConfigurationReference = 5BA51CC5F0C2CD48B9FB2036 /* Pods-split.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TEYXSSTETT;
 				INFOPLIST_FILE = split/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,8 +632,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunflower.split;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -626,7 +643,9 @@
 			baseConfigurationReference = BE3FF63475A58BD80F1454A5 /* Pods-split.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TEYXSSTETT;
 				INFOPLIST_FILE = split/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -634,8 +653,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sunflower.split;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -91,7 +91,6 @@ class AddEventViewController: UIViewController,UITableViewDelegate,UITableViewDa
             jumpToValuesVTC(title:"类型",valueItems:type_items,selected_id: kv_items["类型"] as! Int)
             break
         case 4:
-           print("finish time")
            let datePicker = UIDatePicker(frame:CGRect(x:0,y:self.view.frame.size.height/3*2,width:self.view.frame.size.width, height:self.view.frame.size.height/3));
            datePicker.datePickerMode = .date
            datePicker.addTarget(self, action: #selector(dateChanged),
@@ -103,7 +102,6 @@ class AddEventViewController: UIViewController,UITableViewDelegate,UITableViewDa
            
            toolBar.items = [spaceItem, doneItem]
            self.view.addSubview(datePicker)
-           print("renchao===")
             break
         default:
             print("Wrong at AddEventViewController")
@@ -135,7 +133,7 @@ class AddEventViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func SaveBtnClicked(_ sender: Any) {
-        sqlManager.insert(tableName: "t_event", dicFields: ["E_name":eventNameText.text!,"E_state":0])
+        sqlManager.insert(tableName: "t_event", dicFields: ["E_name":kv_items["名称"]!,"E_content":kv_items["描述"]!,"E_state":kv_items["状态"]!,"E_type":kv_items["类型"]!])
         self.dismiss(animated: true, completion: nil)
     }
     

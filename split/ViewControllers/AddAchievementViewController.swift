@@ -11,7 +11,7 @@ import UIKit
 class AddAchievementViewController: UIViewController {
 
     var sqlManager = SQLiteManager();
-    var event_id:Int = 0
+    var event_id:String = ""
     var event_name:String = ""
     var achievement_id = "0"
 

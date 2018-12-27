@@ -10,6 +10,8 @@ import UIKit
 
 class ValuesTableViewController: UITableViewController {
     var parentView: AddEventViewController? = nil
+    var parentView2: DetailViewController? = nil
+
     var cur_title = ""
     var value_items = ["null"]
     var selected_id = 0
@@ -18,8 +20,11 @@ class ValuesTableViewController: UITableViewController {
         //let sb = UIStoryboard(name: "Main", bundle: nil)
         //let addEventVC = sb.instantiateViewController(withIdentifier: "addEventViewController") as! AddEventViewController
         
-        parentView!.kv_items[cur_title] = selected_id
+        parentView?.kv_items[cur_title] = selected_id
         parentView?.addEventTableView.reloadData()
+        parentView2?.kv_items[cur_title] = selected_id
+        parentView2?.detailTableView.reloadData()
+        
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {

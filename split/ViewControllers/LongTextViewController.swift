@@ -10,6 +10,7 @@ import UIKit
 
 class LongTextViewController: UIViewController {
     var parentView : AddEventViewController? = nil
+    var parentView2 : DetailViewController? = nil
     var cur_title = ""
     var cur_content = ""
     @IBOutlet weak var longTextField: UITextView!
@@ -19,6 +20,8 @@ class LongTextViewController: UIViewController {
     @IBAction func saveBtnClicked(_ sender: Any) {
         parentView?.kv_items[cur_title] = longTextField.text
         parentView?.addEventTableView.reloadData()
+        parentView2?.kv_items[cur_title] = longTextField.text
+        parentView2?.detailTableView.reloadData()
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {

@@ -3,5 +3,5 @@ target 'split' do
     use_frameworks!
     #Framework
     pod 'FMDB', '~> 2.7.5'
- 
+    pod 'Alamofire' 
 end

@@ -6,6 +6,8 @@
 	<array>
 		<string>资料</string>
 		<string>电话</string>
+		<string>上传数据</string>
+		<string>更新数据</string>
 	</array>
 	<key>设置</key>
 	<array>

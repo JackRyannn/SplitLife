@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBAction func backBtnClicked(_ sender: Any) {
@@ -16,6 +18,7 @@ class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelega
     //类变量使用
     struct Constants{
         static var data:NSMutableDictionary = NSMutableDictionary()
+        
     }
     
     
@@ -23,15 +26,15 @@ class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelega
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return (Constants.data.allKeys[section]) as? String
     }
-//    设置section的个数
+    //    设置section的个数
     func numberOfSections(in tableView: UITableView) -> Int {
         return Constants.data.count
     }
-//    设置每个section内cell的个数
+    //    设置每个section内cell的个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (Constants.data.allValues[section] as! NSArray).count
     }
-//    设置cell内容
+    //    设置cell内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil{
@@ -42,12 +45,32 @@ class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelega
         label?.text = (Constants.data.allValues[indexPath.section] as! NSArray).object(at:indexPath.row) as? String
         return cell!
     }
-//   点击事件
+    //   点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\((Constants.data.allValues[indexPath.section] as! NSArray).object(at: indexPath.row)) Clicked")
+        if(indexPath.row == 2){
+            let params : NSMutableDictionary = [:]
+            let message : NSMutableDictionary = [:]
+            params.setValue("RC000001", forKey: "TransCode")
+            message.setValue("10001", forKey: "user_id")
+            message.setValue("this is ios information", forKey: "user_info")
+            params.setValue(message, forKey: "message")
+            let httpUtil = HttpUtil.shareManager()
+            httpUtil.requestData(.post, urlString: "http://localhost:1352/setUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
+        }
+        if(indexPath.row == 3){
+            let params : NSMutableDictionary = [:]
+            let message : NSMutableDictionary = [:]
+            params.setValue("RC000002", forKey: "TransCode")
+            message.setValue("10001", forKey: "user_id")
+            message.setValue("2018-12-15", forKey: "info_date")
+            params.setValue(message, forKey: "message")
+            let httpUtil = HttpUtil.shareManager()
+            httpUtil.requestData(.post, urlString: "http://localhost:1352/getUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
+        }
     }
     
-//页面加载
+    //页面加载
     override func viewDidLoad() {
         super.viewDidLoad()
         Constants.data = NSMutableDictionary.init(contentsOfFile: Bundle.main.path(forResource: "my", ofType: "plist")!)!
@@ -59,15 +82,15 @@ class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelega
         // Do any additional setup after loading the view.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
