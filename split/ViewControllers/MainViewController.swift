@@ -49,33 +49,23 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         showMenu = true
         path = indexPath as NSIndexPath
-        
         //cell中需要重写canBecomeFirstResponder
         let cell: TableViewCell = tableView.cellForRow(at: indexPath) as! TableViewCell
-        
         cell.contentView.backgroundColor = UIColor.black
-        
         //需要成为第一响应者
         cell.becomeFirstResponder()
-        
         let menu: UIMenuController = UIMenuController.shared
-        
         //这里的frame影响箭头的位置
         var rect: CGRect = cell.frame
-        
         rect.size.width = 200
-        
         menu.setTargetRect(rect, in: tableView)
-        
         let item: UIMenuItem = UIMenuItem(title: "删除", action: #selector(MainViewController.delMenuPress(menu:)))
         let copyItem: UIMenuItem = UIMenuItem(title: "拷贝", action: #selector(MainViewController.delMenuPress(menu:)))
-        
         menu.menuItems = [item,copyItem]
-        
         menu.setMenuVisible(true, animated: true)
-        
         return true
     }
+    
     func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         
         return false
@@ -87,18 +77,31 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     @objc func delMenuPress(menu: UIMenuController) {
-        
         print("删除成功")
-        
         self.lifeTableView.reloadData()
     }
     @objc func reloadCell() {
-        
         let cell: TableViewCell = lifeTableView.cellForRow(at: path as IndexPath) as! TableViewCell
-        
         cell.contentView.backgroundColor = UIColor.white
     }
-    
+//    左滑
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard.init(name: "Main", bundle: nil)
+        let detailVC:DetailViewController = sb.instantiateViewController(withIdentifier: "detailViewController") as! DetailViewController
+        detailVC.model_id = "1"
+        detailVC.head_id = (lifeArray[indexPath.row].object(forKey: "element_id") as? String)!
+        detailVC.head_name = (lifeArray[indexPath.row].object(forKey: "element_name") as? String)!
+        detailVC.element_id = (lifeArray[indexPath.row].object(forKey: "element_id") as? String)!
+        //        现在默认传1，因为还没有开发别的模版
+       
+        self.present(detailVC, animated: true, completion: nil)
+        
+    }
+//    编辑左滑的title
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "编辑"
+    }
+   
     
     
     

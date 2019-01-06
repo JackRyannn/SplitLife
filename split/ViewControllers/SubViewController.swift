@@ -44,9 +44,9 @@ class SubViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
 //        detailVC.element_id = element_id
         self.present(detailVC, animated: true, completion: nil)
     }
-    @IBAction func addNewOutBtnClicked(_ sender: Any) {
-//        jumpToAddAchievementVC()
-    }
+//    @IBAction func addNewOutBtnClicked(_ sender: Any) {
+////        jumpToAddAchievementVC()
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -63,12 +63,12 @@ class SubViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func numberOfSections(in tableView: UITableView) -> Int {
 //        这个是根据e_type来分的，目前分为两类，如果=1，就是array_in,否则为array_2，待修改！！！！
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
-            return "输入条件"
+            return "子目标"
         }else{
             return "输出条件"
             
@@ -79,7 +79,7 @@ class SubViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         if section == 0{
             return array_in.count
         }else if section == 1{
-            return array_out.count
+//            return array_out.count
         }
         return 0;
     }
@@ -150,21 +150,24 @@ class SubViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
         }
         let arr_child = (rs[0].object(forKey: "e_child") as! String).split(separator: ",")
         for i in arr_child{
-            let rs_child = sqlManager.select(tableName: table_name, arFieldsKey: ["e_name","e_type"], condition: "e_id='"+i+"'")
+            let rs_child = sqlManager.select(tableName: table_name, arFieldsKey: ["e_name","e_type","e_enable"], condition: "e_id='"+i+"'")
             if(rs_child.count<=0){
                 print("父节点对应的孩子查不到，按理说这是fatal，一般不会走到")
                 return
             }
+
             let item = NSMutableDictionary()
             item.setObject(rs_child[0].object(forKey: "e_name")! as! String, forKey: "element_name" as NSCopying)
             item.setObject(i, forKey: "element_id" as NSCopying)
-            if((rs_child[0].object(forKey: "e_type")! as! NSString).intValue == 0){
+            item.setObject(rs_child[0].object(forKey: "e_enable")! as! NSString, forKey: "e_enable" as NSCopying)
+            if((rs_child[0].object(forKey: "e_type")! as! NSString).intValue == 0 && (rs_child[0].object(forKey: "e_enable")! as! NSString).intValue == 0){
                 array_in.append(item)
             }else{
                 array_out.append(item)
             }
         }
-        
+        print("gggg")
+        print(array_in)
         self.subTableView.reloadData()
     }
     

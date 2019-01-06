@@ -214,15 +214,27 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             jumpToValuesVTC(title:"操作方法",valueItems: operation_items,selected_id: kv_items["操作方法"] as! Int)
             break
         case 10:
+//            添加底部操作alert
             let alertController = UIAlertController(title: "删除数据", message: "删除数据将不可恢复",
                                                     preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: nil)
+            let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: {
+                action in
+                print("删除该条记录")
+                if(self.sqlManager.update(tableName: self.table_name, dicFields: ["e_enable":1], condition: "e_id='"+self.element_id+"'")){
+                    print("删除成功")
+                    self.dismiss(animated: true, completion: nil)
+
+                }else{
+                    print("删除失败")
+                }
+            })
             //        let archiveAction = UIAlertAction(title: "保存", style: .default, handler: nil)
             alertController.addAction(cancelAction)
             alertController.addAction(deleteAction)
             //        alertController.addAction(archiveAction)
             self.present(alertController, animated: true, completion: nil)
+            
         default:
             print("Wrong at DetailViewController")
         }
