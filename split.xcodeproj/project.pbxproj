@@ -37,6 +37,9 @@
 		E16BDBE421A1BCA000448D16 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BDBE321A1BCA000448D16 /* AnalysisViewController.swift */; };
 		E16BDBE621A1BCA900448D16 /* WorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BDBE521A1BCA900448D16 /* WorldViewController.swift */; };
 		E16BDBE821A624E700448D16 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16BDBE721A624E700448D16 /* DetailViewController.swift */; };
+		E17B7ACD21E0B07B001AB5AB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B7ACB21E0B07B001AB5AB /* TableViewCell.swift */; };
+		E17B7ACE21E0B07B001AB5AB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17B7ACC21E0B07B001AB5AB /* TableViewCell.xib */; };
+		E17B7AD021E19746001AB5AB /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B7ACF21E19746001AB5AB /* AlertUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 		E16BDBE321A1BCA000448D16 /* AnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		E16BDBE521A1BCA900448D16 /* WorldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldViewController.swift; sourceTree = "<group>"; };
 		E16BDBE721A624E700448D16 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E17B7ACB21E0B07B001AB5AB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E17B7ACC21E0B07B001AB5AB /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		E17B7ACF21E19746001AB5AB /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			children = (
 				180D6F0521A9356100D62A6D /* SqliteManager.swift */,
 				E12CD38A21C5DBDC0030E530 /* HttpUtil.swift */,
+				E17B7ACF21E19746001AB5AB /* AlertUtil.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -227,6 +234,8 @@
 				E10BA2EC21BB704B0010DA0B /* ValuesTableViewController.swift */,
 				E10BA2EE21BBAB120010DA0B /* TextViewController.swift */,
 				E10BA2F021BBAB1A0010DA0B /* LongTextViewController.swift */,
+				E17B7ACB21E0B07B001AB5AB /* TableViewCell.swift */,
+				E17B7ACC21E0B07B001AB5AB /* TableViewCell.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -353,6 +362,7 @@
 				E14D836A219C785B004F3B34 /* Assets.xcassets in Resources */,
 				E14D8368219C7858004F3B34 /* Main.storyboard in Resources */,
 				18CCAD4321B825CF00B8DDF1 /* time_cell.jpeg in Resources */,
+				E17B7ACE21E0B07B001AB5AB /* TableViewCell.xib in Resources */,
 				E10BA2F321BBAB510010DA0B /* Sub.storyboard in Resources */,
 				18CCAD4121B8258B00B8DDF1 /* TimeTableViewCell.xib in Resources */,
 			);
@@ -433,9 +443,11 @@
 				E16BDBE621A1BCA900448D16 /* WorldViewController.swift in Sources */,
 				E10BA2F121BBAB1A0010DA0B /* LongTextViewController.swift in Sources */,
 				1890BCE321B2EFFB008E8236 /* AddAchievementViewController.swift in Sources */,
+				E17B7ACD21E0B07B001AB5AB /* TableViewCell.swift in Sources */,
 				E10BA2ED21BB704B0010DA0B /* ValuesTableViewController.swift in Sources */,
 				E16BDBE221A1BC7800448D16 /* TodoViewController.swift in Sources */,
 				18CCAD4021B8258B00B8DDF1 /* TimeTableViewCell.swift in Sources */,
+				E17B7AD021E19746001AB5AB /* AlertUtil.swift in Sources */,
 				E14D8365219C7858004F3B34 /* MainViewController.swift in Sources */,
 				E12CD38B21C5DBDC0030E530 /* HttpUtil.swift in Sources */,
 				E10BA2EF21BBAB120010DA0B /* TextViewController.swift in Sources */,

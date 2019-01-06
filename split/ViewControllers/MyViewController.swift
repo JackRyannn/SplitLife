@@ -45,28 +45,54 @@ class MyViewController: UIViewController,UITableViewDataSource,UITableViewDelega
         label?.text = (Constants.data.allValues[indexPath.section] as! NSArray).object(at:indexPath.row) as? String
         return cell!
     }
+//    创建文件
+    func createFile(name:String, baseUrl:NSURL){
+        let manager = FileManager.default
+        let fileUrlPath = baseUrl.appendingPathComponent(name)
+        
+        let exist = manager.fileExists(atPath: (fileUrlPath?.path)!)
+        if !exist {
+            manager.createFile(atPath:(fileUrlPath?.path)!, contents: nil, attributes: nil)
+        }
+    }
+
+    
+    
     //   点击事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\((Constants.data.allValues[indexPath.section] as! NSArray).object(at: indexPath.row)) Clicked")
         if(indexPath.row == 2){
-            let params : NSMutableDictionary = [:]
-            let message : NSMutableDictionary = [:]
-            params.setValue("RC000001", forKey: "TransCode")
-            message.setValue("10001", forKey: "user_id")
-            message.setValue("this is ios information", forKey: "user_info")
-            params.setValue(message, forKey: "message")
+
+//
             let httpUtil = HttpUtil.shareManager()
-            httpUtil.requestData(.post, urlString: "http://localhost:1352/setUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
+            httpUtil.upload()
+            
+            
+            
+            
+            
+//            let params : NSMutableDictionary = [:]
+//            let message : NSMutableDictionary = [:]
+//            params.setValue("RC000001", forKey: "TransCode")
+//            message.setValue("10001", forKey: "user_id")
+//            message.setValue("this is ios information", forKey: "user_info")
+//            params.setValue(message, forKey: "message")
+//            let httpUtil = HttpUtil.shareManager()
+//            httpUtil.requestData(.post, urlString: "http://localhost:1352/setUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
         }
         if(indexPath.row == 3){
-            let params : NSMutableDictionary = [:]
-            let message : NSMutableDictionary = [:]
-            params.setValue("RC000002", forKey: "TransCode")
-            message.setValue("10001", forKey: "user_id")
-            message.setValue("2018-12-15", forKey: "info_date")
-            params.setValue(message, forKey: "message")
             let httpUtil = HttpUtil.shareManager()
-            httpUtil.requestData(.post, urlString: "http://localhost:1352/getUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
+//            这里是从博客里的静态文件里下载，可以查看linux我建立了一个软连接
+            httpUtil.download(webURL: "http://renchao.site/static/upload/splitDB_1.sqlite", filename: "splitDB.sqlite")
+            AlertUtil.showMessage(viewController: self,message: "更新完成")
+//            let params : NSMutableDictionary = [:]
+//            let message : NSMutableDictionary = [:]
+//            params.setValue("RC000002", forKey: "TransCode")
+//            message.setValue("10001", forKey: "user_id")
+//            message.setValue("2018-12-15", forKey: "info_date")
+//            params.setValue(message, forKey: "message")
+//            let httpUtil = HttpUtil.shareManager()
+//            httpUtil.requestData(.post, urlString: "http://localhost:1352/getUserInfo", parameters: params as? [String : AnyObject], success:{ (resp) in print(resp)}, failure: {(err) in print(err)})
         }
     }
     

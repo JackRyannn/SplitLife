@@ -13,56 +13,60 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     let state_items = ["待完成","已完成","无法完成"]
     let type_items = ["无类型","职业生涯","学习生涯","社交网络","艺术追求","身体素质"]
     let operation_items = [">","<","="]
-
+    
     var sqlManager = SQLiteManager();
     // flag = 0 element | 1 achievement
     var flag = 0;
-    
-    var pre_id:String = ""
-    var event_id:String = ""
-    var event_name:String = ""
+    var parent_id:String = ""
+    var head_id:String = ""
+    var head_name:String = ""
     var element_id:String = ""
-
+    var model_id:String = ""
+    var table_name:String = ""
+    
     @IBOutlet weak var detailTableView: UITableView!
-
-////    取消button
-//    @IBAction func backBtnClicked(_ sender: Any) {
-//
-//        let alertController = UIAlertController(title: "系统提示",
-//                                                message: "未保存就退出吗？", preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-//        let okAction = UIAlertAction(title: "是的", style: .default, handler: {
-//            action in
-//            print("已退出")
-//            self.dismiss(animated: true, completion: nil)
-//        })
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(okAction)
-//        self.present(alertController, animated: true, completion: nil)
-//
-//    }
-////    保存button
-//    @IBAction func saveBtnClicked(_ sender: Any) {
-////        if(flag==0){
-////            sqlManager.insert(tableName: "t_element", dicFields: ["e_name":nameText.text!,"e_state":0])
-////        }else{
-////            sqlManager.insert(tableName: "t_achievement", dicFields: ["a_name":nameText.text!,"a_state":0])
-////        }
-//
-//        let alertController = UIAlertController(title: "保存成功!",
-//                                                message: nil, preferredStyle: .alert)
-//        //显示提示框
-//        self.present(alertController, animated: true, completion: nil)
-//        //两秒钟后自动消失
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-//            self.presentedViewController?.dismiss(animated: false, completion: nil)
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//
-//    }
+    
+    ////    取消button
+    //    @IBAction func backBtnClicked(_ sender: Any) {
+    //
+    //        let alertController = UIAlertController(title: "系统提示",
+    //                                                message: "未保存就退出吗？", preferredStyle: .alert)
+    //        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+    //        let okAction = UIAlertAction(title: "是的", style: .default, handler: {
+    //            action in
+    //            print("已退出")
+    //            self.dismiss(animated: true, completion: nil)
+    //        })
+    //        alertController.addAction(cancelAction)
+    //        alertController.addAction(okAction)
+    //        self.present(alertController, animated: true, completion: nil)
+    //
+    //    }
+    ////    保存button
+    //    @IBAction func saveBtnClicked(_ sender: Any) {
+    ////        if(flag==0){
+    ////            sqlManager.insert(tableName: "t_element", dicFields: ["e_name":nameText.text!,"e_state":0])
+    ////        }else{
+    ////            sqlManager.insert(tableName: "t_achievement", dicFields: ["a_name":nameText.text!,"a_state":0])
+    ////        }
+    //
+    //        let alertController = UIAlertController(title: "保存成功!",
+    //                                                message: nil, preferredStyle: .alert)
+    //        //显示提示框
+    //        self.present(alertController, animated: true, completion: nil)
+    //        //两秒钟后自动消失
+    //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+    //            self.presentedViewController?.dismiss(animated: false, completion: nil)
+    //            self.dismiss(animated: true, completion: nil)
+    //        }
+    //
+    //    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kv_items.count;
-//        return 5
+//        如果为新建的element，那么少显示一个 是否删除
+        if(element_id.isEmpty){
+            return kv_items.count-1
+        }
+        return kv_items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,7 +123,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             keyLabel?.text = "是否删除"
             valueLabel?.text = kv_items["删除"] as? String
             break
-
+            
             
         default:
             print("Wrong at AddEventViewController")
@@ -209,6 +213,16 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         case 8:
             jumpToValuesVTC(title:"操作方法",valueItems: operation_items,selected_id: kv_items["操作方法"] as! Int)
             break
+        case 10:
+            let alertController = UIAlertController(title: "删除数据", message: "删除数据将不可恢复",
+                                                    preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: nil)
+            //        let archiveAction = UIAlertAction(title: "保存", style: .default, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            //        alertController.addAction(archiveAction)
+            self.present(alertController, animated: true, completion: nil)
         default:
             print("Wrong at DetailViewController")
         }
@@ -233,30 +247,38 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     
-
+    
     @IBAction func CancelBtnClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func SaveBtnClicked(_ sender: Any) {
-        let params = ["e_name":kv_items["名称"]!,"e_content":kv_items["描述"]!,"e_state":kv_items["状态"]!,"e_type":kv_items["类型"]!,"e_plan_time":kv_items["计划开始时间"]!,"e_estimated_time":kv_items["预计完成时间"]!,"e_key":kv_items["键"]!,"e_value":kv_items["值"]!,"e_operator":kv_items["操作方法"]!,"e_priority":kv_items["优先级"]!,"e_enable":kv_items["删除"]!] as NSDictionary
-        if(pre_id != ""){
-//            新添加element
-            var r_type = 0
-            if(event_id==pre_id){
-//                父类是event
-                r_type = 1
+        let params = ["e_name":kv_items["名称"]!,"e_content":kv_items["描述"]!,"e_role_id":0,"e_state":kv_items["状态"]!,"e_type":kv_items["类型"]!,"e_plan_time":kv_items["计划开始时间"]!,"e_estimated_time":kv_items["预计完成时间"]!,"e_key":kv_items["键"]!,"e_value":kv_items["值"]!,"e_operator":kv_items["操作方法"]!,"e_priority":kv_items["优先级"]!,"e_enable":kv_items["删除"]!,"e_parent":parent_id,"e_child":""] as NSDictionary
+        
+        let cur_element_id = sqlManager.getTableCount(tableName: table_name)
+        if(element_id == ""){
+            //            新添加element 这里要用sql事务，暂未处理
+            sqlManager.insert(tableName: table_name, dicFields: params)
+            //            更新父节点的孩子
+            print(sqlManager.select(tableName: table_name, arFieldsKey: ["e_child"], condition: "e_id='"+parent_id+"'"))
+            let p_child = (sqlManager.select(tableName: table_name, arFieldsKey: ["e_child"], condition: "e_id='"+parent_id+"'")[0].object(forKey: "e_child") as! String)+String(cur_element_id)+","
+            if(!sqlManager.update(tableName: table_name, dicFields: ["e_child":p_child], condition: "e_id='"+parent_id+"'")){
+                print("更新父节点孩子失败")
             }else{
-                r_type = 2
+                print("更新父节点孩子成功")
             }
-        sqlManager.insert(tableName: "t_element", dicFields: params)
-        let cur_element_id = sqlManager.getTableCount(tableName: "t_element")
-        sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":pre_id,"r_next_id":cur_element_id,"r_next_name":kv_items["名称"]!,"r_type":r_type])
         }else{
-//            保存原有element
-            let ret = sqlManager.update(tableName: "t_element", dicFields: params, condition:"e_id='"+element_id+"'" )
-            let ret2 = sqlManager.update(tableName: "t_relationship", dicFields: ["r_next_name":kv_items["名称"]!], condition:"r_next_id='"+element_id+"'" )
-            print("更新状态\(ret) \(ret2)")
+            let ret = sqlManager.update(tableName: table_name, dicFields: params, condition:"e_id='"+element_id+"'" )
+            print("更新状态\(ret)")
         }
+        
+        //        //sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":pre_id,"r_next_id":cur_element_id,"r_next_name":kv_items["名称"]!,"r_type":r_type])
+        //        }else{
+        ////            保存原有element
+        //            let ret = sqlManager.update(tableName: table_name, dicFields: params, condition:"e_id='"+element_id+"'" )
+        ////            let ret2 = sqlManager.update(tableName: "t_relationship", dicFields: ["r_next_name":kv_items["名称"]!], condition:"r_next_id='"+element_id+"'" )
+        ////            print("更新状态\(ret) \(ret2)")
+        //        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -265,13 +287,13 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        如果没有前置id pre_id,说明是新建的，否则查询该element的信息
-        if(pre_id != ""){
-            print("新建的element")
+        print("显示已存在的element")
+        table_name = sqlManager.getTableName(modelId: model_id)
+        let rs = sqlManager.select(tableName: table_name, arFieldsKey: ["e_id","e_name","e_content","e_state","e_type","e_plan_time","e_estimated_time","e_key","e_value","e_operator","e_priority","e_enable"],condition:"e_id='"+element_id+"'")
+        if(rs.count<=0){
+            print("数据库获取失败");
             return
         }
-        print("显示已存在的element")
-        let rs = sqlManager.select(tableName: "t_element", arFieldsKey: ["e_id","e_name","e_content","e_state","e_type","e_plan_time","e_estimated_time","e_key","e_value","e_operator","e_priority","e_enable"],condition:"e_id='"+element_id+"'")
         print(rs)
         kv_items["名称"] = rs[0].object(forKey:"e_name")
         kv_items["描述"] = rs[0].object(forKey:"e_content")
@@ -291,5 +313,5 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         // Do any additional setup after loading the view.
     }
-
+    
 }

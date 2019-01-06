@@ -11,8 +11,8 @@ import UIKit
 class AddElementViewController: UIViewController {
     
     var sqlManager = SQLiteManager();
-    var event_id:String = ""
-    var event_name:String = ""
+    var head_id:String = ""
+    var head_name:String = ""
     var element_id = "0"
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -37,7 +37,7 @@ class AddElementViewController: UIViewController {
     @IBAction func saveBtnClicked(_ sender: Any) {
         sqlManager.insert(tableName: "t_element", dicFields: ["e_name":nameText.text!,"e_state":0])
         let cur_element_id = sqlManager.getTableCount(tableName: "t_element")
-        sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":event_id,"r_next_id":cur_element_id,"r_next_name":nameText.text!,"r_type":1])
+        sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":head_id,"r_next_id":cur_element_id,"r_next_name":nameText.text!,"r_type":1])
         
         let alertController = UIAlertController(title: "保存成功!",
                                                 message: nil, preferredStyle: .alert)
@@ -48,8 +48,8 @@ class AddElementViewController: UIViewController {
             let sb = UIStoryboard.init(name: "Main", bundle: nil)
             self.presentedViewController?.dismiss(animated: false, completion: nil)
             let subVC:SubViewController = sb.instantiateViewController(withIdentifier: "subViewController") as! SubViewController
-            subVC.event_id = self.event_id;
-            subVC.event_name = self.event_name;
+            subVC.head_id = self.head_id;
+            subVC.head_name = self.head_name;
             self.present(subVC, animated: true, completion: nil)
             
         }

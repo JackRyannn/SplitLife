@@ -11,8 +11,8 @@ import UIKit
 class AddAchievementViewController: UIViewController {
 
     var sqlManager = SQLiteManager();
-    var event_id:String = ""
-    var event_name:String = ""
+    var head_id:String = ""
+    var head_name:String = ""
     var achievement_id = "0"
 
     @IBOutlet weak var nameText: UITextField!
@@ -37,7 +37,7 @@ class AddAchievementViewController: UIViewController {
     @IBAction func saveBtnClicked(_ sender: Any) {
         sqlManager.insert(tableName: "t_achievement", dicFields: ["a_name":nameText.text!,"a_state":0])
         let cur_achievement_id = sqlManager.getTableCount(tableName: "t_achievement")
-        sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":event_id,"r_next_id":cur_achievement_id,"r_next_name":nameText.text!,"r_type":2])
+        sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":head_id,"r_next_id":cur_achievement_id,"r_next_name":nameText.text!,"r_type":2])
         let alertController = UIAlertController(title: "保存成功!",
                                                 message: nil, preferredStyle: .alert)
         //显示提示框
@@ -48,8 +48,8 @@ class AddAchievementViewController: UIViewController {
             let sb = UIStoryboard.init(name: "Main", bundle: nil)
             self.presentedViewController?.dismiss(animated: false, completion: nil)
             let subVC:SubViewController = sb.instantiateViewController(withIdentifier: "subViewController") as! SubViewController
-            subVC.event_id = self.event_id;
-            subVC.event_name = self.event_name;
+            subVC.head_id = self.head_id;
+            subVC.head_name = self.head_name;
             self.present(subVC, animated: true, completion: nil)
         }
         
