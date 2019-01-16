@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import UserNotifications
+
 
 class DetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    var kv_items = ["名称":"五字以内","描述":"具体要求","状态":0,"类型":0,"计划开始时间":"2018-10-08","预计完成时间":"2018-10-08","键":"键名","值":"值","操作方法":1,"优先级":0,"删除":0] as [String : Any]
+//    使用source里的style
+    fileprivate var alertStyle: UIAlertController.Style = .actionSheet
+
+    var kv_items = ["名称":" ","描述":"具体要求","状态":0,"类型":0,"计划开始时间":"2018-10-08","预计完成时间":"2018-10-08","键":"键名","值":"值","操作方法":1,"优先级":0,"删除":0] as [String : Any]
     let state_items = ["待完成","已完成","无法完成"]
     let type_items = ["无类型","职业生涯","学习生涯","社交网络","艺术追求","身体素质"]
     let operation_items = [">","<","="]
@@ -145,58 +150,88 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! TextViewController
-            textVC.parentView2 = self
-            textVC.cur_title = "名称"
-            textVC.cur_text = (kv_items["名称"] as! String)
-            self.present(textVC, animated: true, completion: nil)
+            var content = ""
+            let alert = UIAlertController(style: self.alertStyle, title: "名称")
+            let config: TextField.Config = { textField in
+                textField.becomeFirstResponder()
+                textField.textColor = .black
+                textField.placeholder = "Type something"
+//                textField.left(image: image, color: .black)
+                textField.leftViewPadding = 12
+                textField.borderWidth = 1
+                textField.cornerRadius = 8
+                textField.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+                textField.backgroundColor = nil
+                textField.keyboardAppearance = .default
+                textField.keyboardType = .default
+                textField.returnKeyType = .done
+                textField.action { textField in
+                    // validation and so on
+                    content = textField.text!
+                }
+            }
+            alert.addOneTextField(configuration: config)
+            alert.addAction(title: "Cancel", style: .cancel)
+            let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
+                self.kv_items["名称"] = content
+                self.detailTableView.reloadData()
+            })
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
             break
         case 1:
             let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let longTextVC = sb.instantiateViewController(withIdentifier: "longTextViewController") as! LongTextViewController
+            let longTextVC = sb.instantiateViewController(withIdentifier: "longRCTextViewController") as! LongTextViewController
             longTextVC.parentView2 = self
             longTextVC.cur_title = "描述"
             longTextVC.cur_content = (kv_items["描述"] as! String)
             self.present(longTextVC, animated: true, completion: nil)
             break
         case 2:
-            jumpToValuesVTC(title:"状态",valueItems: state_items,selected_id: kv_items["状态"] as! Int)
+            
+//            jumpToValuesVTC(title:"状态",valueItems: state_items,selected_id: kv_items["状态"] as! Int)
             break
         case 3:
             jumpToValuesVTC(title:"类型",valueItems:type_items,selected_id: kv_items["类型"] as! Int)
             break
         case 4:
             print("plan finish time")
-            let datePicker = UIDatePicker(frame:CGRect(x:0,y:self.view.frame.size.height/3*2,width:self.view.frame.size.width, height:self.view.frame.size.height/3));
-            datePicker.datePickerMode = .date
-            datePicker.addTarget(self, action: #selector(dateChanged),
-                                 for: .valueChanged)
-            let toolBar = UIToolbar(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 0, height: 35)))
-            let spaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            var myDate:Date = Date()
+            let alert = UIAlertController(title: "计划开始时间", message: "Select Date", preferredStyle: self.alertStyle)
+            alert.addDatePicker(mode: .date, date: Date(), minimumDate: nil, maximumDate: nil) { date in
+                myDate = date
+            }
+            alert.addAction(title: "Cancel", style: .cancel)
+            let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                self.kv_items["计划开始时间"] = formatter.string(from: myDate)
+                self.detailTableView.reloadData()
+            })
+            alert.addAction(okAction)
+            self.present(alert,animated: true,completion: nil)
             
-            let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(dateChanged))
-            
-            toolBar.items = [spaceItem, doneItem]
-            self.view.addSubview(datePicker)
             break
         case 5:
             print("real finish time")
-            let datePicker = UIDatePicker(frame:CGRect(x:0,y:self.view.frame.size.height/3*2,width:self.view.frame.size.width, height:self.view.frame.size.height/3));
-            datePicker.datePickerMode = .date
-            datePicker.addTarget(self, action: #selector(dateChanged),
-                                 for: .valueChanged)
-            let toolBar = UIToolbar(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 0, height: 35)))
-            let spaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            
-            let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(dateChanged))
-            
-            toolBar.items = [spaceItem, doneItem]
-            self.view.addSubview(datePicker)
+            var myDate:Date = Date()
+            let alert = UIAlertController(title: "预计完成时间", message: "Select Date", preferredStyle: self.alertStyle)
+            alert.addDatePicker(mode: .date, date: Date(), minimumDate: nil, maximumDate: nil) { date in
+                myDate = date
+            }
+            alert.addAction(title: "Cancel", style: .cancel)
+            let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                self.kv_items["预计完成时间"] = formatter.string(from: myDate)
+                self.detailTableView.reloadData()
+            })
+            alert.addAction(okAction)
+            self.present(alert,animated: true,completion: nil)
             break
         case 6:
             let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! TextViewController
+            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! RCTextViewController
             textVC.parentView2 = self
             textVC.cur_title = "键"
             textVC.cur_text = (kv_items["键"] as! String)
@@ -204,7 +239,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             break
         case 7:
             let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! TextViewController
+            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! RCTextViewController
             textVC.parentView2 = self
             textVC.cur_title = "值"
             textVC.cur_text = (kv_items["值"] as! String)
@@ -245,16 +280,6 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         return 1;
     }
     
-    @objc func dateChanged(datePicker : UIDatePicker){
-        print("update date")
-        //更新提醒时间文本框
-        let formatter = DateFormatter()
-        //日期样式
-        formatter.dateFormat = "yyyy-MM-dd"
-        kv_items["计划开始时间"] = formatter.string(from: datePicker.date)
-        
-        detailTableView.reloadData()
-    }
     
     
     
@@ -284,6 +309,14 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             print("更新状态\(ret)")
         }
         
+//      发送推送通知
+        var date = Date()
+        date.minute = date.minute+1
+        print(date.timeString())
+        PushMessageUtil.sendPushMessage(msgTitle: "test", msgBody: "body", datetime: date)
+        
+        
+        
         //        //sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":pre_id,"r_next_id":cur_element_id,"r_next_name":kv_items["名称"]!,"r_type":r_type])
         //        }else{
         ////            保存原有element
@@ -293,6 +326,8 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         //        }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
     
     
     

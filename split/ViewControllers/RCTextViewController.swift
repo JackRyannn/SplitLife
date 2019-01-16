@@ -1,5 +1,5 @@
 //
-//  TextViewController.swift
+//  RCTextViewController.swift
 //  split
 //
 //  Created by JackRyannn on 2018/12/8.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TextViewController: UIViewController {
+class RCTextViewController: UIViewController {
     var parentView : AddEventViewController? = nil
     var parentView2 : DetailViewController? = nil
     var cur_title = ""

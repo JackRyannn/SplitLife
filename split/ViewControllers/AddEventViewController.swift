@@ -70,7 +70,7 @@ class AddEventViewController: UIViewController,UITableViewDelegate,UITableViewDa
         switch indexPath.row {
         case 0:
             let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! TextViewController
+            let textVC = sb.instantiateViewController(withIdentifier: "textViewController") as! RCTextViewController
             textVC.parentView = self
             textVC.cur_title = "名称"
             textVC.cur_text = (kv_items["名称"] as! String)
@@ -78,7 +78,7 @@ class AddEventViewController: UIViewController,UITableViewDelegate,UITableViewDa
            break
         case 1:
             let sb = UIStoryboard(name: "Sub", bundle: nil)
-            let longTextVC = sb.instantiateViewController(withIdentifier: "longTextViewController") as! LongTextViewController
+            let longTextVC = sb.instantiateViewController(withIdentifier: "longRCTextViewController") as! LongTextViewController
             longTextVC.parentView = self
             longTextVC.cur_title = "描述"
             longTextVC.cur_content = (kv_items["描述"] as! String)
