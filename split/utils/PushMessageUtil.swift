@@ -11,13 +11,14 @@ import UserNotifications
 class PushMessageUtil {
     
     static func stringConvertDate(string:String, dateFormat:String="yyyy-MM-dd HH:mm:ss") -> Date {
+        print("转换日期为："+string)
         let dateFormatter = DateFormatter.init()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = dateFormatter.date(from: string)
         return date!
     }
     
-    static func dateConvertString(date:Date, dateFormat:String="yyyy-MM-dd") -> String {
+    static func dateConvertString(date:Date, dateFormat:String="yyyy-MM-dd HH:mm:ss") -> String {
         let timeZone = TimeZone.init(identifier: "UTC")
         let formatter = DateFormatter()
         formatter.timeZone = timeZone
@@ -60,6 +61,8 @@ class PushMessageUtil {
             }
         }
         //        先默认发送成功
+        print("添加一条推送")
+        print(datetime.dateTimeString())
         return true
     }
     

@@ -123,7 +123,7 @@ class MainViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func queryAndUpdate(){
         lifeArray = Array<NSMutableDictionary>()
-        let rs = sqlManager.select(tableName: "t_element_base", arFieldsKey: ["e_id","e_name"],condition:"e_parent='0'")
+        let rs = sqlManager.select(tableName: "t_element_base", arFieldsKey: ["e_id","e_name"],condition:"e_parent='0' AND e_enable='0'")
         for s in rs{
             let item = NSMutableDictionary()
             item.setObject(s.object(forKey: "e_id")! as! String, forKey: "element_id" as NSCopying)

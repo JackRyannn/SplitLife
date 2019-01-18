@@ -13,8 +13,8 @@ import UserNotifications
 class DetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 //    使用source里的style
     fileprivate var alertStyle: UIAlertController.Style = .actionSheet
-
-    var kv_items = ["名称":" ","描述":"具体要求","状态":0,"类型":0,"计划开始时间":"2018-10-08","预计完成时间":"2018-10-08","键":"键名","值":"值","操作方法":1,"优先级":0,"删除":0] as [String : Any]
+    
+    var kv_items = ["名称":" ","描述":"具体要求","状态":0,"类型":0,"计划开始时间":"0000-00-00 00:00:00","预计完成时间":"0000-00-00 00:00:00","键":"键名","值":"值","操作方法":1,"优先级":50,"删除":0] as [String : Any]
     let state_items = ["待完成","已完成","无法完成"]
     let type_items = ["无类型","职业生涯","学习生涯","社交网络","艺术追求","身体素质"]
     let operation_items = [">","<","="]
@@ -102,11 +102,15 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             break
         case 4:
             keyLabel?.text = "计划开始时间"
-            valueLabel?.text = kv_items["计划开始时间"] as? String
+            let myDateStr = kv_items["计划开始时间"] as! String
+            let end = myDateStr.index(myDateStr.endIndex, offsetBy: -3)
+            valueLabel?.text = String(myDateStr[..<end])
             break
         case 5:
             keyLabel?.text = "预计完成时间"
-            valueLabel?.text = kv_items["预计完成时间"] as? String
+            let myDateStr = kv_items["预计完成时间"] as! String
+            let end = myDateStr.index(myDateStr.endIndex, offsetBy: -3)
+            valueLabel?.text = String(myDateStr[..<end])
             break
         case 6:
             keyLabel?.text = "键"
@@ -188,8 +192,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.present(longTextVC, animated: true, completion: nil)
             break
         case 2:
-            
-//            jumpToValuesVTC(title:"状态",valueItems: state_items,selected_id: kv_items["状态"] as! Int)
+            jumpToValuesVTC(title:"状态",valueItems: state_items,selected_id: kv_items["状态"] as! Int)
             break
         case 3:
             jumpToValuesVTC(title:"类型",valueItems:type_items,selected_id: kv_items["类型"] as! Int)
@@ -198,13 +201,13 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             print("plan finish time")
             var myDate:Date = Date()
             let alert = UIAlertController(title: "计划开始时间", message: "Select Date", preferredStyle: self.alertStyle)
-            alert.addDatePicker(mode: .date, date: Date(), minimumDate: nil, maximumDate: nil) { date in
+            alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: nil) { date in
                 myDate = date
             }
             alert.addAction(title: "Cancel", style: .cancel)
             let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 self.kv_items["计划开始时间"] = formatter.string(from: myDate)
                 self.detailTableView.reloadData()
             })
@@ -216,13 +219,13 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             print("real finish time")
             var myDate:Date = Date()
             let alert = UIAlertController(title: "预计完成时间", message: "Select Date", preferredStyle: self.alertStyle)
-            alert.addDatePicker(mode: .date, date: Date(), minimumDate: nil, maximumDate: nil) { date in
+            alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: nil) { date in
                 myDate = date
             }
             alert.addAction(title: "Cancel", style: .cancel)
             let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 self.kv_items["预计完成时间"] = formatter.string(from: myDate)
                 self.detailTableView.reloadData()
             })
@@ -248,6 +251,31 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         case 8:
             jumpToValuesVTC(title:"操作方法",valueItems: operation_items,selected_id: kv_items["操作方法"] as! Int)
             break
+        case 9:
+            var myPriority = 50
+            let alert = UIAlertController(style: .actionSheet, title: "优先级指数", message: "1-100")
+            let frameSizes: [CGFloat] = (1...100).map { CGFloat($0) }
+            let pickerViewValues: [[String]] = [frameSizes.map { Int($0).description }]
+            let pickerViewSelectedValue: PickerViewViewController.Index = (column: 0, row: frameSizes.index(of: CGFloat(Double(self.kv_items["优先级"] as! Int))) ?? 0)
+            
+            alert.addPickerView(values: pickerViewValues, initialSelection: pickerViewSelectedValue) { vc, picker, index, values in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 1) {
+                        vc.preferredContentSize.height = frameSizes[index.row]
+                        myPriority = Int(frameSizes[index.row])
+                        print(myPriority)
+                    }
+                }
+            }
+            let okAction = UIAlertAction(title: "确认", style: UIAlertActionStyle.default , handler: { (action: UIAlertAction!) -> Void in
+                
+                self.kv_items["优先级"] = myPriority
+                self.detailTableView.reloadData()
+            })
+            alert.addAction(okAction)
+            alert.addAction(title: "取消", style: .cancel)
+            self.present(alert,animated: true,completion: nil)
+            break
         case 10:
 //            添加底部操作alert
             let alertController = UIAlertController(title: "删除数据", message: "删除数据将不可恢复",
@@ -255,7 +283,7 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "删除", style: .destructive, handler: {
                 action in
-                print("删除该条记录")
+                print("删除该条记录"+self.element_id)
                 if(self.sqlManager.update(tableName: self.table_name, dicFields: ["e_enable":1], condition: "e_id='"+self.element_id+"'")){
                     print("删除成功")
                     self.dismiss(animated: true, completion: nil)
@@ -310,11 +338,21 @@ class DetailViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
         
 //      发送推送通知
-        var date = Date()
-        date.minute = date.minute+1
-        print(date.timeString())
-        PushMessageUtil.sendPushMessage(msgTitle: "test", msgBody: "body", datetime: date)
-        
+//        var date = Date()
+        //        date.minute = date.minute+1
+        if(kv_items["计划开始时间"] as? String != "0000-00-00 00:00:00"){
+            let date = PushMessageUtil.stringConvertDate(string: kv_items["计划开始时间"] as! String)
+            _ = PushMessageUtil.sendPushMessage(msgTitle: "您的计划正式开始", msgBody: "点击查看详情", datetime: date)
+        }
+        if(kv_items["预计完成时间"] as? String != "0000-00-00 00:00:00"){
+            let date2 = PushMessageUtil.stringConvertDate(string: kv_items["预计完成时间"] as! String)
+            _ = PushMessageUtil.sendPushMessage(msgTitle: "您的计划此刻应已完成", msgBody: "点击查看详情", datetime: date2)
+        }
+//        if(flag && flag2){
+//            print("添加推送成功")
+//        }else{
+//            print("添加推送失败")
+//        }
         
         
         //        //sqlManager.insert(tableName: "t_relationship", dicFields: ["r_pre_id":pre_id,"r_next_id":cur_element_id,"r_next_name":kv_items["名称"]!,"r_type":r_type])

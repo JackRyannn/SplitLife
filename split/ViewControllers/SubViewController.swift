@@ -166,8 +166,6 @@ class SubViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
                 array_out.append(item)
             }
         }
-        print("gggg")
-        print(array_in)
         self.subTableView.reloadData()
     }
     
